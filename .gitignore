@@ -1,6 +1,8 @@
 *.exe
-*.o
-*.#main.cpp
 *.dll
+*.o
+*.d
 *.so
+*.dylib
 *.swp
+*~
