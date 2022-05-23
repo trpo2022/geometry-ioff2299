@@ -1,4 +1,5 @@
 #include "geometry.h"
+
 #include <cstring>
 #include <fstream>
 #include <iostream>
@@ -10,6 +11,19 @@
 using namespace std;
 
 const double Pi = 3.1415;
+
+// Geometric operations
+double C_S(double r)
+{
+    double S = Pi * pow(r, 2);
+    return S;
+}
+
+double C_P(double r)
+{
+    double P = 2 * Pi * r;
+    return P;
+}
 
 // Analisis function
 Point Point_analysis(int string, int& lfound, std::string storage[])
@@ -64,9 +78,9 @@ Circle Circle_analysis(int order, int string, std::string storage[])
 
         C.r = atof(str_r.c_str());
 
-        C.S = Pi * pow(C.r, 2);
+        C.S = C_S(C.r);
 
-        C.P = 2 * Pi * C.r;
+        C.P = C_P(C.r);
 
     } else {
         printf("Error ");
@@ -109,9 +123,6 @@ int Intersec_T(Point A, Point B, Point C, Point D)
             / ((D.y - C.y) * (B.x - A.x) - (D.x - C.x) * (B.y - A.y));
 
     if ((0 <= Ua && Ua <= 1) && (0 <= Ub && Ub <= 1)) {
-        // double xua = A.x + Ua * (B.x - A.x);
-        // double yua = A.y + Ua * (B.y - A.y);
-        // printf("\n #[ x=%.2f y=%.2f ]", xua, yua);
         return 1;
     } else {
         return 0;
@@ -153,8 +164,7 @@ void Circle_intersec(Circle C, Circle CM[], int s_CM, Triangle TM[], int s_TM)
                            + pow(abs(C.Center.x - X.Center.y), 2));
             float d = (C.r + X.r);
             if (h <= d) {
-                std::cout « " " « X.Order « ". circle"
-« std::endl;
+                std::cout << "          " << X.Order << ". circle" << std::endl;
                 break;
             }
         }
@@ -167,8 +177,8 @@ void Circle_intersec(Circle C, Circle CM[], int s_CM, Triangle TM[], int s_TM)
         cheak[2] = Intersec_C(X.C, X.A, C.Center, C.r);
         for (int i = 0; i < 3; i++) {
             if (cheak[i] == 1) {
-                std::cout « " " « X.Order « ". triangle"
-« std::endl;
+                std::cout << "          " << X.Order << ". triangle"
+                          << std::endl;
                 break;
             }
         }
@@ -186,8 +196,7 @@ void Triangle_intersec(
         cheak[2] = Intersec_C(T.C, T.A, X.Center, X.r);
         for (int i = 0; i < 3; i++) {
             if (cheak[i] == 1) {
-                std::cout « " " « X.Order « ". circle"
-« std::endl;
+                std::cout << "          " << X.Order << ". circle" << std::endl;
                 break;
             }
         }
@@ -211,8 +220,8 @@ void Triangle_intersec(
 
             for (int i = 0; i < 9; i++) {
                 if (cheak[i] == 1) {
-                    std::cout « " " « X.Order « ". triangle"
-« std::endl;
+                    std::cout << "          " << X.Order << ". triangle"
+                              << std::endl;
                     break;
                 }
             }
@@ -223,16 +232,14 @@ void Triangle_intersec(
 // Printing function
 void Circle_print(Circle C, std::string storage[])
 {
-    std::cout « "\n " « C
-            .Order « ". " « storage[C.Order - 1]
-« "\n perimeter = " « C.P « "\n area = " « C.S
-« std::endl;
+    std::cout << "\n " << C.Order << ". " << storage[C.Order - 1]
+              << "\n      perimeter = " << C.P << "\n      area = " << C.S
+              << std::endl;
 }
 
 void Triangle_print(Triangle T, std::string storage[])
 {
-    std::cout « "\n " « T
-            .Order « ". " « storage[T.Order - 1]
-« "\n perimeter = " « T.P « "\n area = " « T.S
-« std::endl;
+    std::cout << "\n " << T.Order << ". " << storage[T.Order - 1]
+              << "\n      perimeter = " << T.P << "\n      area = " << T.S
+              << std::endl;
 }
