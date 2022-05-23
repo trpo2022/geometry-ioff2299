@@ -8,15 +8,15 @@ GEOMETRY = src/libgeom/geometry.cpp
 COMPILE = obj/geom/main.o obj/libgeom/libgeom.o
 
 all: geometry
-./geometry
+  ./geometry
 
 geometry: $(COMPILE)
-g++ $(COMPILE) -o $@
+  g++ $(COMPILE) -o $@
 
 obj/geom/main.o: $(MAIN)
-g++ -c $(FILEFLAG) $(CFLAGS) $(CPPFLAGS) -o $@ $(MAIN)
+  g++ -c $(FILEFLAG) $(CFLAGS) $(CPPFLAGS) -o $@ $(MAIN)
 
 obj/libgeom/libgeom.o: $(GEOMETRY)
-g++ -c $(FILEFLAG) $(CFLAGS) $(CPPFLAGS) -o $@ $(GEOMETRY)
+  g++ -c $(FILEFLAG) $(CFLAGS) $(CPPFLAGS) -o $@ $(GEOMETRY)
 
 -include geometry.d hello.d
