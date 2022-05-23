@@ -21,9 +21,10 @@ int main()
     Triangle Triangle_mass[figure_limit];
 
     // Open file
-    std::cout « "\n The program accepts format files as input .wkt!";
-    std::cout « "\n Enter the full file name: ";
-    std::cin » file_name;
+    std::cout << "\n The program accepts format files as input .wkt!";
+    // std::cout << "\n Enter the full file name: ";
+    // std::cin >> file_name;
+    file_name = "wkt.wkt";
 
     std::ifstream in(file_name);
     if (in.is_open()) {
@@ -68,8 +69,8 @@ int main()
         if (check == 0) {
             printf("\n\n #Error in %d line, «circle» , «triangle» not found ",
                    counter_f + 1);
-            std::cout « "\n " « counter_f + 1 « ". " « storage[counter_f]
-			« std::endl;
+            std::cout << "\n " << counter_f + 1 << ". " << storage[counter_f]
+                      << std::endl;
         }
         check = 0;
     }
@@ -83,7 +84,7 @@ int main()
     for (int counter_f = 1; counter_f < fig_counter; counter_f++) {
         if (Triangle_mass[Triangle_pr].Order == counter_f) {
             Triangle_print(Triangle_mass[Triangle_pr], storage);
-            printf(" intersects:\n");
+            printf("      intersects:\n");
             Triangle_intersec(
                     Triangle_mass[Triangle_pr],
                     Circle_mass,
@@ -104,6 +105,6 @@ int main()
     }
 
     in.close();
-    std::cout « "\n\n End of programm\n" « std::endl;
+    std::cout << "\n\n End of programm\n" << std::endl;
     return 0;
 }
