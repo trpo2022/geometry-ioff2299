@@ -1,4 +1,5 @@
 #pragma once
+
 #include <string>
 
 using namespace std;
@@ -26,7 +27,10 @@ struct Triangle {
     double S;
 };
 
-Point Point_analysis(int string, std::string storage[]);
+double C_S(double r);
+double C_P(double r);
+
+Point Point_analysis(int string, int& lfound, std::string storage[]);
 Circle Circle_analysis(int order, int string, std::string storage[]);
 Triangle Triangle_analysis(int order, int string, std::string storage[]);
 
